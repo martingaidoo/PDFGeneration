@@ -1,7 +1,6 @@
 // Importar los módulos necesarios
 const express = require('express');
 const puppeteer = require('puppeteer');
-const fs = require('fs');
 
 // Crear una instancia de la aplicación Express
 const app = express();
@@ -23,33 +22,26 @@ app.post('/generate-pdf', async (req, res) => {
         }
 
         // Lanzar el navegador de Puppeteer
-        // Lanzar el navegador de Puppeteer
         const browser = await puppeteer.launch({
             args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
 
         const page = await browser.newPage();
 
+
         // Establecer el contenido de la página
         await page.setContent(html, { waitUntil: 'networkidle0' });
 
         // // Generar el PDF a partir del contenido de la página
+
         const pdfBuffer = await page.pdf({
             format: 'A4',
             printBackground: true, // Incluir fondo en el PDF
+            path: 'documento.pdf', //esto guarda el pdf en el servidor
         });
-
-        fs.writeFileSync('documento.pdf', pdfBuffer); // guardar el archivo en el servidor
 
         await browser.close();
 
-        // Establecer la respuesta con el PDF generado
-        res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': 'inline; filename="documento.pdf"'
-        });
-
-        // res.send(pdfBuffer);
         res.end(pdfBuffer);
 
 
