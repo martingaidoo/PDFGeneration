@@ -1,0 +1,29 @@
+{
+  "name": "pdfgeneration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martingaidoo/PDFGeneration.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martingaidoo/PDFGeneration/issues"
+  },
+  "homepage": "https://github.com/martingaidoo/PDFGeneration#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "puppeteer": "^23.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
